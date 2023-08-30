@@ -1,6 +1,7 @@
 import express from 'express';
-import  ApiRoutes  from './routes/api.routes'
-import  IndexRoutes  from './routes/index.routes'
+import ApiRoutes from './routes/api.routes'
+import IndexRoutes from './routes/index.routes'
+
 class Server {
 
   constructor(port) {
@@ -8,9 +9,11 @@ class Server {
     this.port = port;
   }
   init() {
-     new ApiRoutes(this.app);
-     new IndexRoutes(this.app);
-    
+    this.app.use(express.json())
+    this.app.use(express.urlencoded({ extended: true }));
+    new ApiRoutes(this.app);
+    new IndexRoutes(this.app);
+
   }
   start() {
     this.init();

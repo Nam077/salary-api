@@ -6,8 +6,9 @@ class ApiController {
         this.salaryService = new SalaryService();
     }
     init() {
-        this.router.get('/salary', async (req, res) => {
-            res.json(await this.salaryService.getSalary());
+        this.router.post('/salary', async (req, res) => {
+            const { id, year, month } = req.body;
+            res.json(await this.salaryService.getSalary(id, year, month));
         })
     }
 }
