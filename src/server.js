@@ -1,5 +1,6 @@
 import express from 'express';
 import  ApiRoutes  from './routes/api.routes'
+import  IndexRoutes  from './routes/index.routes'
 class Server {
 
   constructor(port) {
@@ -7,7 +8,9 @@ class Server {
     this.port = port;
   }
   init() {
-    const apiRoutes = new ApiRoutes(this.app);
+     new ApiRoutes(this.app);
+     new IndexRoutes(this.app);
+    
   }
   start() {
     this.init();
