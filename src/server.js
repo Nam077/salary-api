@@ -1,12 +1,13 @@
 import express from 'express';
 import ApiRoutes from './routes/api.routes'
 import IndexRoutes from './routes/index.routes'
-
+import cors from 'cors';
 class Server {
 
   constructor(port) {
     this.app = express();
     this.port = port;
+    this.enbleCors();
   }
   init() {
     this.app.use(express.json())
@@ -14,6 +15,9 @@ class Server {
     new ApiRoutes(this.app);
     new IndexRoutes(this.app);
 
+  }
+  enbleCors() {
+    this.app.use(cors());
   }
   start() {
     this.init();
